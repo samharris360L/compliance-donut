@@ -1,0 +1,18 @@
+{
+  "generatedAt": "1970-01-01T00:00:00Z",
+  "validityMonths": 12,
+  "renewalWindows": [30, 90],
+  "pathCount": 0,
+  "totalActiveUsers": 0,
+  "compliant": 0,
+  "nonCompliant": 0,
+  "nonComplianceReasons": {
+    "lapsedAtLeastOne": 0,
+    "missingAtLeastOne": 0
+  },
+  "renewalsDue": {
+    "30": 0,
+    "90": 0
+  },
+  "paths": []
+}
