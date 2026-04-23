@@ -31,7 +31,7 @@ import requests
 # path to count as compliant overall.
 PATHS = [
     {"id": "677ffad519c655c2c323947b", "label": "Compliance Training"},
-    {"id": "677ffb2ea3382395b80d75fc", "label": "Onboarding"},
+  #  {"id": "677ffb2ea3382395b80d75fc", "label": "Onboarding"},
 ]
 
 # How long is a certificate valid for (months)?
