@@ -71,8 +71,9 @@
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: auto 380px;
-        gap: 48px;
+        grid-template-columns: auto auto;
+        column-gap: clamp(16px, 4vw, 48px);
+        row-gap: 28px;
         align-items: center;
         justify-content: space-between;
         min-height: 180px;
@@ -82,8 +83,9 @@
       .compliance-col {
         display: grid;
         grid-template-columns: 140px auto;
-        gap: 24px;
+        gap: clamp(14px, 2vw, 24px);
         align-items: center;
+        min-width: 0;
       }
       .donut-wrap {
         position: relative;
@@ -112,11 +114,11 @@
         font-weight: 600;
       }
 
-      .legend { display: flex; flex-direction: column; gap: 16px; }
+      .legend { display: flex; flex-direction: column; gap: 14px; }
       .legend-row {
         display: grid;
         grid-template-columns: auto 1fr auto;
-        gap: 12px;
+        gap: clamp(8px, 1.5vw, 16px);
         align-items: center;
       }
       .legend-row .dot {
@@ -160,6 +162,7 @@
       /* === Renewals column (right) === */
       .renewals-col {
         display: flex; flex-direction: column;
+        min-width: 0;
       }
       .col-title {
         font-family: "JetBrains Mono", monospace;
@@ -173,17 +176,18 @@
       .renewals-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 14px;
+        gap: 12px;
       }
       .renew-tile {
         background: rgba(255, 255, 255, 0.55);
         border: 1px solid rgba(255, 255, 255, 0.7);
         border-radius: 12px;
-        padding: 16px;
+        padding: 14px 16px;
         display: flex; flex-direction: column;
         gap: 6px;
         backdrop-filter: blur(4px);
         -webkit-backdrop-filter: blur(4px);
+        min-width: 130px;
       }
       .renew-tile.has-due {
         background: linear-gradient(135deg, var(--supernova) 0%, #FFD43D 100%);
@@ -220,7 +224,7 @@
       }
       .state.err { color: var(--torch); }
 
-      @media (max-width: 880px) {
+      @media (max-width: 640px) {
         .banner { padding: 24px; }
         .banner-grid { grid-template-columns: 1fr; gap: 28px; }
         .deco-ring { right: -180px; width: 320px; height: 320px; opacity: 0.1; }
