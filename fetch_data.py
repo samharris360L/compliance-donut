@@ -200,10 +200,11 @@ def parse_iso(value):
 
 def certificate_id_of(cert):
     """
-    A certificate record can reference its template / definition by any of
-    several field names depending on the endpoint version. Be tolerant.
+    Match against the certificate's definition/template ID, called
+    `certificateOutlineId` in 360Learning's awarded-certificate records.
+    The other keys are kept as fallbacks just in case of variation.
     """
-    for key in ("certificateId", "templateId", "certificateTemplateId", "_id", "id"):
+    for key in ("certificateOutlineId", "certificateId", "templateId", "certificateTemplateId"):
         v = cert.get(key)
         if v:
             return str(v)
@@ -260,16 +261,8 @@ def main():
     if not CLIENT_ID or not CLIENT_SECRET:
         print("ERROR: CLIENT_ID and CLIENT_SECRET must be set.", file=sys.stderr)
         return 1
-    if not CERTIFICATES:
-        print("ERROR: CERTIFICATES env var is empty. Set it as a GitHub Actions", file=sys.stderr)
-        print('repository variable, e.g.:', file=sys.stderr)
-        print('  [{"id":"64abc...","label":"Safety"},{"id":"64def...","label":"GDPR"}]', file=sys.stderr)
-        return 1
 
-    tracked_ids = [c["id"] for c in CERTIFICATES]
-    labels = {c["id"]: c["label"] for c in CERTIFICATES}
-    print(f"Tracking {len(tracked_ids)} certificate(s): {', '.join(labels.values())}", flush=True)
-    print(f"Renewal windows: {RENEWAL_WINDOWS} days", flush=True)
+    debug_user = os.environ.get("DEBUG_USER_ID", "").strip()
 
     try:
         print(f"Getting token from {BASE_URL} ...", flush=True)
@@ -279,6 +272,34 @@ def main():
             "360-api-version": API_VERSION,
             "authorization": f"Bearer {token}",
         }
+
+        # Debug mode: dump one user's raw certificate response and stop.
+        if debug_user:
+            print(f"=== DEBUG MODE: dumping certificates for user {debug_user} ===", flush=True)
+            url = f"{BASE_URL}/api/v2/users/{debug_user}/certificates"
+            r = requests.get(url, headers=headers, timeout=30)
+            print(f"Status: {r.status_code}", flush=True)
+            print(f"Link header: {r.headers.get('link')}", flush=True)
+            print("--- Raw response ---", flush=True)
+            try:
+                body = r.json()
+                print(json.dumps(body, indent=2, default=str), flush=True)
+            except Exception:
+                print(r.text, flush=True)
+                return 1
+            print("--- End ---", flush=True)
+            return 0
+
+        if not CERTIFICATES:
+            print("ERROR: CERTIFICATES env var is empty. Set it as a GitHub Actions", file=sys.stderr)
+            print('repository variable, e.g.:', file=sys.stderr)
+            print('  [{"id":"64abc...","label":"Safety"},{"id":"64def...","label":"GDPR"}]', file=sys.stderr)
+            return 1
+
+        tracked_ids = [c["id"] for c in CERTIFICATES]
+        labels = {c["id"]: c["label"] for c in CERTIFICATES}
+        print(f"Tracking {len(tracked_ids)} certificate(s): {', '.join(labels.values())}", flush=True)
+        print(f"Renewal windows: {RENEWAL_WINDOWS} days", flush=True)
 
         print("Fetching all active users ...", flush=True)
         active_users = fetch_active_users(headers)
