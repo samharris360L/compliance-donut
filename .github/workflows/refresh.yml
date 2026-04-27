@@ -39,6 +39,8 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           BASE_URL: ${{ vars.BASE_URL || 'https://app.360learning.com' }}
+          CERTIFICATES: ${{ vars.CERTIFICATES }}
+          RENEWAL_WINDOWS: ${{ vars.RENEWAL_WINDOWS }}
         run: python fetch_data.py
 
       - name: Commit updated data.json
