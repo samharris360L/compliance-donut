@@ -287,9 +287,9 @@
         stamp.textContent = "updated " + fmtRelative(data.generatedAt);
         source.textContent = "generated " + fmtDate(data.generatedAt);
 
-        const pathCount = data.pathCount || 0;
-        const pathWord = pathCount === 1 ? "1 certification path" : `${pathCount} certification paths`;
-        sub.innerHTML = `Tracking <strong>${data.totalActiveUsers.toLocaleString()}</strong> active users across <strong>${pathWord}</strong>. A user is compliant only when they hold an in-date certificate on every path (validity ${data.validityMonths} months).`;
+        const certCount = data.certificateCount || 0;
+        const certWord = certCount === 1 ? "1 certificate" : `${certCount} certificates`;
+        sub.innerHTML = `Tracking <strong>${data.totalActiveUsers.toLocaleString()}</strong> active users across <strong>${certWord}</strong>. A user is compliant only when they hold an in-date version of every tracked certificate.`;
 
         const total = data.totalActiveUsers || 0;
         const compliantPct = total > 0 ? Math.round((data.compliant / total) * 100) : 0;
@@ -314,7 +314,7 @@
                 <ul class="legend">
                   <li>
                     <span class="swatch" style="background: var(--ok)"></span>
-                    <span class="name">Compliant<small>In-date on every path</small></span>
+                    <span class="name">Compliant<small>In-date on every certificate</small></span>
                     <span class="count">${data.compliant.toLocaleString()}<small>${total > 0 ? ((data.compliant/total)*100).toFixed(1) : '0.0'}%</small></span>
                   </li>
                   <li>
@@ -345,25 +345,25 @@
             </div>
           </div>
 
-          ${data.paths && data.paths.length > 0 ? `
+          ${data.certificates && data.certificates.length > 0 ? `
             <div class="paths-section">
               <div class="panel" style="padding: 0;">
                 <div class="paths-table">
                   <div class="row head">
-                    <div>Path</div>
+                    <div>Certificate</div>
                     <div class="num-col">Compliant</div>
                     <div class="num-col">Lapsed</div>
                     <div class="num-col">Never earned</div>
                   </div>
-                  ${data.paths.map(p => `
+                  ${data.certificates.map(c => `
                     <div class="row">
                       <div>
-                        <div class="pname">${escapeHtml(p.label)}</div>
-                        <div class="pid">${escapeHtml(p.id)}</div>
+                        <div class="pname">${escapeHtml(c.label)}</div>
+                        <div class="pid">${escapeHtml(c.id)}</div>
                       </div>
-                      <div class="cell num-col good" data-label="Compliant">${(p.compliant||0).toLocaleString()}</div>
-                      <div class="cell num-col bad"  data-label="Lapsed">${(p.lapsed||0).toLocaleString()}</div>
-                      <div class="cell num-col mute" data-label="Never earned">${(p.missing||0).toLocaleString()}</div>
+                      <div class="cell num-col good" data-label="Compliant">${(c.compliant||0).toLocaleString()}</div>
+                      <div class="cell num-col bad"  data-label="Lapsed">${(c.lapsed||0).toLocaleString()}</div>
+                      <div class="cell num-col mute" data-label="Never earned">${(c.missing||0).toLocaleString()}</div>
                     </div>
                   `).join("")}
                 </div>
