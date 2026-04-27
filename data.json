@@ -1,29 +1,17 @@
 {
-  "generatedAt": "2026-04-27T08:31:16.337812+00:00",
-  "validityMonths": 12,
-  "renewalWindows": [
-    30,
-    90
-  ],
-  "pathCount": 1,
-  "totalActiveUsers": 32,
-  "compliant": 26,
-  "nonCompliant": 6,
+  "generatedAt": "1970-01-01T00:00:00Z",
+  "renewalWindows": [30, 90],
+  "certificateCount": 0,
+  "totalActiveUsers": 0,
+  "compliant": 0,
+  "nonCompliant": 0,
   "nonComplianceReasons": {
-    "lapsedAtLeastOne": 6,
+    "lapsedAtLeastOne": 0,
     "missingAtLeastOne": 0
   },
   "renewalsDue": {
     "30": 0,
     "90": 0
   },
-  "paths": [
-    {
-      "id": "677ffad519c655c2c323947b",
-      "label": "Compliance Training",
-      "compliant": 26,
-      "lapsed": 6,
-      "missing": 0
-    }
-  ]
+  "certificates": []
 }
