@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-06-03T21:49:56.571630+00:00",
+  "generatedAt": "2026-06-03T23:43:58.186798+00:00",
   "renewalWindows": [
     30,
     90
   ],
   "certificateCount": 1,
   "totalActiveUsers": 40,
-  "compliant": 10,
-  "nonCompliant": 30,
+  "compliant": 9,
+  "nonCompliant": 31,
   "nonComplianceReasons": {
-    "lapsedAtLeastOne": 22,
+    "lapsedAtLeastOne": 23,
     "missingAtLeastOne": 8
   },
   "renewalsDue": {
-    "30": 2,
-    "90": 2
+    "30": 1,
+    "90": 1
   },
   "certificates": [
     {
       "id": "67850414324f319f63d45b49",
       "label": "Workplace Safety",
-      "compliant": 10,
-      "lapsed": 22,
+      "compliant": 9,
+      "lapsed": 23,
       "missing": 8
     }
   ]
