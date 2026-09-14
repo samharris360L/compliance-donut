@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-14T05:51:16.082093+00:00",
+  "generatedAt": "2026-09-14T11:58:58.141594+00:00",
   "renewalWindows": [
     30,
     90
   ],
   "certificateCount": 1,
-  "totalActiveUsers": 47,
+  "totalActiveUsers": 48,
   "compliant": 29,
-  "nonCompliant": 18,
+  "nonCompliant": 19,
   "nonComplianceReasons": {
     "lapsedAtLeastOne": 5,
-    "missingAtLeastOne": 13
+    "missingAtLeastOne": 14
   },
   "renewalsDue": {
     "30": 2,
@@ -22,7 +22,7 @@
       "label": "Workplace Safety",
       "compliant": 29,
       "lapsed": 5,
-      "missing": 13
+      "missing": 14
     }
   ]
 }
