@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T20:27:07.475134+00:00",
+  "generatedAt": "2026-10-31T00:27:04.702880+00:00",
   "renewalWindows": [
     30,
     90
@@ -13,7 +13,7 @@
     "missingAtLeastOne": 14
   },
   "renewalsDue": {
-    "30": 2,
+    "30": 6,
     "90": 13
   },
   "certificates": [
